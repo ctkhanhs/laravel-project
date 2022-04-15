@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('',[HomeController::class,'home'])->name('home');
 Route::get('danh-muc',[HomeController::class,'category'])->name('category');
 Route::get('san-pham',[HomeController::class,'product'])->name('product');
 Route::get('tai-khoan',[HomeController::class,'account'])->name('account');

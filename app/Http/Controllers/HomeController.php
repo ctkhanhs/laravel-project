@@ -7,9 +7,12 @@ use App\Models\Account;
 
 class HomeController extends Controller
 {
+    public function home(){
+        return view('home');
+    }
     public function category(){
         $cats = Category::all();// select * from categories
-        return view('home',compact('cats'));
+        return view('category',compact('cats'));
     }
 
     public function product(){

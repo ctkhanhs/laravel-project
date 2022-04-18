@@ -7,5 +7,6 @@ class Category extends Model
 {
     use HasFactory;
     protected $table = 'category'; // đổi tên bảng thành category vì mặc định là categories
+    protected $fillable = ['name','status'];
 }
 ?>

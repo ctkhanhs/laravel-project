@@ -8,8 +8,14 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
 
-    public function list(){
-        $cats=Category::all();
+    public function list(Request $req){
+        $cats=Category::paginate(2);
+        if($req->key) {
+            $key=$req->key;
+            $cats=Category::where('name','like','%'.$key.'%')->paginate(2);
+
+
+        }
         return view('admin.category.index',compact('cats'));
     }
     public function create(){
@@ -25,6 +31,11 @@ class CategoryController extends Controller
 
         ]);
         Category::create($req->only('name','status'));
+        return redirect()->route('category.index');
+    }
+
+    public function delete(Category $category){
+        $category->delete();
         return redirect()->route('category.index');
     }
 }

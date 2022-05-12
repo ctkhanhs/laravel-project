@@ -1,27 +1,34 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Account;
 
 class HomeController extends Controller
 {
-    public function home(){
-        return view('home');
-    }
-    public function category(){
-        $cats = Category::all();// select * from categories
-        return view('category',compact('cats'));
+    public function home()
+    {
+        $productSale = Product::orderBy('id', 'DESC')->limit(8)->get();
+        return view('home', compact('productSale'));
     }
 
-    public function product(){
-        $pros = Product::all();// select * from product
-        return view('product',compact('pros'));
+    public function category(Category $category){
+        $products=$category->products()->paginate(2);
+        return view('category', compact('products'));
+
     }
-    public function account(){
-        $accounts = Account::all();// select * from account
-        return view('account',compact('accounts'));
+    public function product(Product $product){
+        return view('product', compact('product'));
+
     }
 
+    public function register(){
+            return view('customer.register');
+    }
+
+    public function post_register(Request $req){
+
+    }
 }

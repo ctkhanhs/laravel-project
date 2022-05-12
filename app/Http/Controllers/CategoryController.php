@@ -4,38 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\Category\CategoryStoreRequest as ReqStore;
+use App\Http\Requests\Category\CategoryUpdateRequest as ReqUpdate;
 
 class CategoryController extends Controller
 {
 
-    public function list(Request $req){
-        $cats=Category::paginate(2);
-        if($req->key) {
-            $key=$req->key;
-            $cats=Category::where('name','like','%'.$key.'%')->paginate(2);
-
-
-        }
-        return view('admin.category.index',compact('cats'));
+    public function index(Request $req)
+    {
+        $cats = Category::search()->paginate(2);
+        return view('admin.category.index', compact('cats'));
     }
-    public function create(){
+    public function create()
+    {
         return view('admin.category.create');
     }
 
-    public function store(Request $req){
-        $req->validate([
-            'name' =>'required'
+    public function store(ReqStore $req, Category $category)
+    {
 
-        ],[
-            'name.required'=>'Tên danh mục không để trống'
-
-        ]);
-        Category::create($req->only('name','status'));
+        $category->add();
         return redirect()->route('category.index');
     }
 
-    public function delete(Category $category){
+    public function destroy(Category $category)
+    {
         $category->delete();
+        return redirect()->route('category.index');
+    }
+
+    public function edit(Category $category)
+    {
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function update(ReqUpdate $req, Category $category)
+    {
+        $category->updateCategory();
         return redirect()->route('category.index');
     }
 }

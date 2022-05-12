@@ -9,50 +9,53 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
-    <!-- Nav tabs -->
 
-    <ul class="nav nav-tabs" id="navId">
-        <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link active">Trang chủ</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('category')}}" class="nav-link active">Danh mục</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('product')}}" class="nav-link active">Sản phẩm</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('account')}}" class="nav-link active">Tài khoản</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#tab2Id">Action</a>
-                <a class="dropdown-item" href="#tab3Id">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#tab4Id">Action</a>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <img src="public/image/logo.png">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{route('home')}}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Danh mục</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            @foreach($categories as $cat)
+                            <a class="dropdown-item" href="{{route('home.category',['category'=>$cat->id, 'slug'=>Str::slug($cat->name)])}}">{{$cat->name}}</a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="">Đăng nhập</a>
+                            <a class="dropdown-item" href="{{route('home.register')}}">Đăng ký</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
-        </li>
-        <li class="nav-item">
-            <a href="#tab5Id" class="nav-link">Another link</a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link disabled">Disabled</a>
-        </li>
-    </ul>
+        </nav>
 
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
     </div>
 
+
+    @yield('bg')
 
 
     <div class="container">
@@ -60,21 +63,70 @@
     </div>
 
 
-    <footer>
-        <h1>Footer</h1>
-    </footer>
+    <div class="container mt-4 border-bottom p-3">
+        <img src="public/image/logo.png">
+    </div>
 
 
 
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <p><b>Contact info</b></p>
+                <p>Address: 2168 S Archer Ave, Chicago, IL 60616, US</p>
+                <p>Phone: +1 321-808-1999</p>
+                <p>Email: Beautycosmetics@gmail.com</p>
+                <p>Opentime: 8.00am - 11.00.pm</p>
+            </div>
+            <div class="col-md-3">
+                <p class="ml-5"><b>Account</b></p>
+                <ul>
+                    <li><a href="">My account</a></li>
+                    <li><a href="">Wishlist</a></li>
+                    <li><a href="">Cart</a></li>
+                    <li><a href="">Shop</a></li>
+                    <li><a href="">Checkout</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <p class="ml-5"><b>Information</b></p>
+                <ul>
+                    <li><a href="">About us</a></li>
+                    <li><a href="">Careers</a></li>
+                    <li><a href="">Delivery Information</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Terms & Condition</a></li>
+                </ul>
+            </div>
 
+            <div class="col-md-3">
+                <p class="title"><b>Payment methods</b></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <div class="row">
+                    <div class="col-md-3 col-3">
+                        <img src="public/image/paypal.png">
+                    </div>
+                    <div class="col-md-3 col-3">
+                        <img src="public/image/visa.png">
+                    </div>
+                    <div class="col-md-3 col-3">
+                        <img src="public/image/mastercard.png">
+                    </div>
+                    <div class="col-md-3 col-3">
+                        <img src="public/image/cirrus.png">
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </div>
+    <div class="end mt-2">
+        <div class="container">
+            <p class="text-secondary size16"><i class="far fa-copyright"></i> Copyright 2020 Beauty</p>
 
+        </div>
+    </div>
 
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

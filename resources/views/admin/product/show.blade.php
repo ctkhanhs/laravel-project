@@ -1,5 +1,8 @@
-@extends('master.site')
-@section('content')
+@extends('master.admin')
+@section('title','Chi tiết sản phẩm')
+
+@section('main')
+
 <div class="row">
     <div class="col-md-5">
         <img src="{{url('public/uploads/'.$product->image)}}" width="100%">
@@ -15,10 +18,8 @@
     </div>
 </div>
 
+
+
 @stop()
-
-    
-
-
 
 

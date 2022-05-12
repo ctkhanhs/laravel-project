@@ -1,5 +1,5 @@
 @extends('master.admin')
-@section('title','Danh mục')
+@section('title','Danh sách sản phẩm')
 @section('main')
 
 <form action="" method="GET" class="form-inline" role="form">
@@ -12,7 +12,7 @@
 
 
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-    <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
+    <a href="{{route('product.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
 </form>
 
 
@@ -20,28 +20,26 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Tên danh mục</th>
-            <th>Trạng thái</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá/Giá KM</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($cats as $cat)
+        @foreach($products as $pro)
         <tr>
-            <td>{{$cat->id}}</td>
-            <td>{{$cat->name}}</td>
+            <td>{{$pro->id}}</td>
             <td>
-                @if($cat->status==1)
-                    <span class="label label-success">Hiển thị</span>
-                @else
-                    <span class="label label-danger">Ẩn</span>
-                @endif
-
+            <img src="{{url('public/uploads/'.$pro->image)}}" width="60">
             </td>
+            <td>{{$pro->name}}</td>
+            <td>{{$pro->price}}/{{$pro->sale_price}}</td>
             <td>
 
-                <form action="{{ route('category.destroy',$cat->id) }}" method="POST">
+                <form action="{{ route('product.destroy',$pro->id) }}" method="POST">
                     @csrf @method('DELETE')
-                    <a href="{{ route('category.edit',$cat->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('product.show',$pro->id) }}" class="btn btn-primary btn-sm">Chi tiết</a>
+                    <a href="{{ route('product.edit',$pro->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                     <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn có muốn xóa không ?')"><i class="fa fa-trash"></i></button>
 
 
@@ -53,7 +51,7 @@
     </tbody>
 </table>
 </hr>
-{{$cats->appends(request()->all())->links()}}
+{{$products->appends(request()->all())->links()}}
 
 
 @stop()

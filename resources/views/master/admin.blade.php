@@ -1,3 +1,6 @@
+<?php
+$menus = config('menu');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,6 +19,12 @@
     <link rel="stylesheet" href="{{url('public/admin')}}/css/style.css" />
     <script src="{{url('public/admin')}}/js/angular.min.js"></script>
     <script src="{{url('public/admin')}}/js/app.js"></script>
+    <script>
+        function base_url() {
+            return "{{url('')}}";
+        }
+    </script>
+    @yield('css')
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -195,35 +204,40 @@
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                        </span>
                     </div>
                 </form>
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
+                    @foreach($menus as $mn)
+                    @if(isset($mn['items']) && count($mn['items']) > 0)
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Danh mục</span>
+                            <i class="fa {{$mn['icon']}}"></i> <span>{{$mn['title']}}</span>
                             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ route('category.index')}}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-                            <li><a href="{{ route('category.create')}}"><i class="fa fa-circle-o"></i> Thêm danh mục</a></li>
+                            @foreach($mn['items'] as $item)
+                            <li><a href="{{ route($item['route'])}}"><i class="fa {{$item['icon']}}"></i> {{$item['title']}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
+                    @else
+
 
                     <li>
-                        <a href="">
-                            <i class="fa fa-th"></i> <span>Widgets</span>
-                            <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
-            </span>
-                        </a>
+                        <a href="{{route($mn['route'])}}"><i class="fa {{$mn['icon']}}"></i>{{$mn['title']}}</a>
                     </li>
+                    @endif
+
+                    @endforeach
+
+
 
                 </ul>
             </section>
@@ -255,12 +269,25 @@
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
+                                <i class="fa fa-minus"></i></button>
                             <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+                                <i class="fa fa-times"></i></button>
                         </div>
                     </div>
                     <div class="box-body">
+                        @if(Session::has('no'))
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{Session::get('yes')}}
+                        </div>
+                        @endif
+                        @if(Session::has('yes'))
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{Session::get('yes')}}
+                        </div>
+                        @endif
+
                         @yield('main')
                     </div>
                     <!-- /.box-body -->
@@ -294,7 +321,8 @@
     <script src="{{url('public/admin')}}/js/dashboard.js"></script>
     <script src="{{url('public/admin')}}/tinymce/tinymce.min.js"></script>
     <script src="{{url('public/admin')}}/tinymce/config.js"></script>
-    <script src="{{url('public/admin')}}/vjs/function.js"></script>
+    <script src="{{url('public/admin')}}/vjs/function.js"></script>\
+    @yield('js')
 </body>
 
 </html>

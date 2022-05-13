@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +20,17 @@ Route::get('san-pham', [HomeController::class, 'product'])->name('product');
 Route::get('tai-khoan', [HomeController::class, 'account'])->name('account');
 Route::get('register', [HomeController::class, 'register'])->name('home.register');
 Route::post('register', [HomeController::class, 'post_register']);
+Route::get('login', [HomeController::class, 'login'])->name('home.login');
+Route::post('login', [HomeController::class, 'post_login']);
+Route::get('logout', [HomeController::class, 'logout'])->name('home.logout');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'check_login']);
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
-    Route::get('', [AdminController::class, 'admin'])->name('admin');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.index');
     Route::resources([
         'category'=> CategoryController::class,
         'product'=> ProductController::class

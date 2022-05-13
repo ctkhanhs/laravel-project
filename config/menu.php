@@ -1,7 +1,7 @@
 <?php
 return[
     [
-        'route' =>  'admin',
+        'route' =>  'admin.index',
         'title' => 'Dashboard',
         'icon' => 'fa-home'
     ],

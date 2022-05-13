@@ -10,14 +10,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../library/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="home.css">
+    <style>
+        a { color:black;}
+    </style>
 </head>
 
 <body>
 
     <div class="container">
         <nav class="navbar navbar-expand-sm navbar-light">
-            <img src="public/image/logo.png">
+            <img src="{{url('public/image')}}/logo.png">
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,8 +42,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="">Đăng nhập</a>
+                            @if(auth()->guard('customer')->check())
+                            <a class="dropdown-item" href="">{{auth()->guard('customer')->user()->name}}</a>
+                            <a class="dropdown-item" href="{{route('home.logout')}}">Thoát</a>
+                            @else
+                            <a class="dropdown-item" href="{{route('home.login')}}">Đăng nhập</a>
                             <a class="dropdown-item" href="{{route('home.register')}}">Đăng ký</a>
+                            @endif
                         </div>
                     </li>
                 </ul>
@@ -62,12 +69,19 @@
         @yield('content')
     </div>
 
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <img src="{{url('public/image')}}/bg3.jpg" style="max-width:100%">
 
-    <div class="container mt-4 border-bottom p-3">
-        <img src="public/image/logo.png">
+            </div>
+        </div>
     </div>
 
 
+    <div class="container mt-4 border-bottom p-3">
+        <img src="{{url('public/image')}}/logo.png">
+    </div>
 
     <div class="container mt-4">
         <div class="row">
@@ -80,7 +94,7 @@
             </div>
             <div class="col-md-3">
                 <p class="ml-5"><b>Account</b></p>
-                <ul>
+                <ul style="list-style: none;">
                     <li><a href="">My account</a></li>
                     <li><a href="">Wishlist</a></li>
                     <li><a href="">Cart</a></li>
@@ -90,7 +104,7 @@
             </div>
             <div class="col-md-3">
                 <p class="ml-5"><b>Information</b></p>
-                <ul>
+                <ul style="list-style: none">
                     <li><a href="">About us</a></li>
                     <li><a href="">Careers</a></li>
                     <li><a href="">Delivery Information</a></li>
@@ -104,16 +118,16 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 <div class="row">
                     <div class="col-md-3 col-3">
-                        <img src="public/image/paypal.png">
+                        <img src="{{url('public/image')}}/paypal.png">
                     </div>
                     <div class="col-md-3 col-3">
-                        <img src="public/image/visa.png">
+                        <img src="{{url('public/image')}}/visa.png">
                     </div>
                     <div class="col-md-3 col-3">
-                        <img src="public/image/mastercard.png">
+                        <img src="{{url('public/image')}}/mastercard.png">
                     </div>
                     <div class="col-md-3 col-3">
-                        <img src="public/image/cirrus.png">
+                        <img src="{{url('public/image')}}/cirrus.png">
                     </div>
                 </div>
             </div>

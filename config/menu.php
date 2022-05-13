@@ -1,5 +1,5 @@
 <?php
-return[
+return [
     [
         'route' =>  'admin.index',
         'title' => 'Dashboard',
@@ -21,7 +21,7 @@ return[
                 'icon' => 'fa-circle-o'
             ]
         ]
-            ],
+    ],
     [
         'route' => 'product.index',
         'title' => 'Sản phẩm',
@@ -38,6 +38,7 @@ return[
                 'icon' => 'fa-circle-o'
             ]
         ]
-            ]
+    ]
+   
 
-            ];
+];

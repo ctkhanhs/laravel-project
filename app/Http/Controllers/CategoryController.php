@@ -43,4 +43,25 @@ class CategoryController extends Controller
         $category->updateCategory();
         return redirect()->route('category.index');
     }
+
+    public function trashed(){
+        $cats = Category::search()->onlyTrashed()->paginate(2);
+        return view('admin.category.trashed', compact('cats'));
+    }
+
+    public function restore($id){
+        $category = Category::withTrashed()->find($id);
+        $category -> restore();
+        return redirect()->route('category.index');
+        
+    }
+    public function forceDelete($id){
+        $category = Category::withTrashed()->find($id);
+        if($category->products->count() > 0){
+            return redirect()->route('category.index')->with('no','Danh mục đang tồn tại sản phẩm');
+        }
+        $category -> forceDelete();
+        return redirect()->route('category.index');
+        
+    }
 }

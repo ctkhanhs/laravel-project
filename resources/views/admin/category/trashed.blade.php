@@ -1,5 +1,5 @@
 @extends('master.admin')
-@section('title','Danh mục')
+@section('title','Danh mục đã xóa')
 @section('main')
 
 <form action="" method="GET" class="form-inline" role="form">
@@ -13,7 +13,6 @@
 
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
     <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
-    <a href="{{route('category.trashed')}}" class="btn btn-danger"><i class="fa fa-trash"></i> Thùng rác</a>
 </form>
 
 
@@ -40,9 +39,9 @@
             </td>
             <td>
 
-                <form action="{{ route('category.destroy',$cat->id) }}" method="POST">
+                <form action="{{ route('category.forceDelete',$cat->id) }}" method="POST">
                     @csrf @method('DELETE')
-                    <a href="{{ route('category.edit',$cat->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('category.restore',$cat->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                     <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn có muốn xóa không ?')"><i class="fa fa-trash"></i></button>
 
 

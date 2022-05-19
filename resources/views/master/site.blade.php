@@ -13,6 +13,7 @@
     <style>
         a { color:black;}
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -28,11 +29,8 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{route('home')}}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Danh mục</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
                             @foreach($categories as $cat)
                             <a class="dropdown-item" href="{{route('home.category',['category'=>$cat->id, 'slug'=>Str::slug($cat->name)])}}">{{$cat->name}}</a>
@@ -40,14 +38,16 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
                             @if(auth()->guard('customer')->check())
                             <a class="dropdown-item" href="">{{auth()->guard('customer')->user()->name}}</a>
-                            <a class="dropdown-item" href="{{route('home.logout')}}">Thoát</a>
+                            <a class="dropdown-item" href="{{route('home.product_favorite')}}">Favorite</a>
+                            <a class="dropdown-item" href="{{route('cart.view')}}">Cart</a>
+                            <a class="dropdown-item" href="{{route('home.logout')}}">Logout</a>
                             @else
-                            <a class="dropdown-item" href="{{route('home.login')}}">Đăng nhập</a>
-                            <a class="dropdown-item" href="{{route('home.register')}}">Đăng ký</a>
+                            <a class="dropdown-item" href="{{route('home.login')}}">Login</a>
+                            <a class="dropdown-item" href="{{route('home.register')}}">Register</a>
                             @endif
                         </div>
                     </li>

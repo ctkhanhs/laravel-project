@@ -22,6 +22,7 @@
             <th>Id</th>
             <th>Ảnh</th>
             <th>Tên sản phẩm</th>
+            <th>Tên danh mục</th>
             <th>Giá/Giá KM</th>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
             <img src="{{url('public/uploads/'.$pro->image)}}" width="60">
             </td>
             <td>{{$pro->name}}</td>
+            <td>{{$pro->category_id}}</td>
             <td>{{$pro->price}}/{{$pro->sale_price}}</td>
             <td>
 

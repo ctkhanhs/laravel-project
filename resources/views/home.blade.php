@@ -9,24 +9,12 @@
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
             <img src="public/image/bg1.jpg" alt="First slide" style="max-width: 100%">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Title</h3>
-                <p>Description</p>
-            </div>
         </div>
         <div class="carousel-item">
             <img src="public/image/bg1.jpg" alt="Second slide" style="max-width: 100%">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Title</h3>
-                <p>Description</p>
-            </div>
         </div>
         <div class="carousel-item">
             <img src="public/image/bg1.jpg" alt="Third slide" style="max-width: 100%">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Title</h3>
-                <p>Description</p>
-            </div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
@@ -40,7 +28,7 @@
 </div>
 @stop()
 @section('content')
-<h2 class="text-center">Product</h2>
+<h2 class="text-center">New Product</h2>
 <hr>
 <div class="row">
     <!-- @foreach ($productSale as $pro)
@@ -63,7 +51,5 @@
     @endforeach -->
     <x-product-list :data="$productSale"/>
 </div>
-
-
 
 @stop()

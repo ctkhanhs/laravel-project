@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\Favorite;
 
 class HomeController extends Controller
 {
@@ -17,8 +18,8 @@ class HomeController extends Controller
 
     public function category(Category $category)
     {
-        $products = $category->products()->paginate(2);
-        return view('category', compact('products'));
+        $products = $category->products()->paginate(4);
+        return view('category', compact('products','category'));
     }
     public function product(Product $product)
     {
@@ -67,5 +68,28 @@ class HomeController extends Controller
     public function logout() {
         auth()->guard('customer')->logout();
         return redirect()->route('home.login');
+    }
+
+    public function favorite($id){
+        Favorite::create([
+            'product_id' => $id,
+            'customer_id' => auth()->guard('customer')->user()->id
+        ]);
+        return redirect()->route('home');
+
+    }
+
+    public function favorites_list() {
+        $products = auth()->guard('customer')->user()->favorites;
+        return view('favorites_list',compact('products'));
+    }
+
+    public function unfavorite($id){
+        Favorite::where([
+            'product_id' => $id,
+            'customer_id' => auth()->guard('customer')->user()->id
+        ])->delete();
+        return redirect()->route('home');
+
     }
 }

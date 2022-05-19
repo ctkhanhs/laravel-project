@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
 
 
 class ProductController extends Controller
 {
     public function index(Request $req)
     {
-        $products = Product::paginate(2);
+        $products = Product::paginate(4);
         if ($req->key) {
             $key = $req->key;
             $products = Product::where('name', 'like', '%' . $key . '%')->paginate(2);
@@ -101,6 +102,7 @@ class ProductController extends Controller
 
         ]);
       
+        $product->update($req->only('name', 'price', 'sale_price', 'category_id','description'));
         return redirect()->route('product.index');
     }
 }

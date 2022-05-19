@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
     protected $table = 'category'; // đổi tên bảng thành category vì mặc định là categories
     protected $fillable = ['name', 'status'];
     protected $dates=['deleted_at'];

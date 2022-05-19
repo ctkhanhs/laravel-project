@@ -53,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label for="">Mô tả</label>
-                <textarea name="description" id="content" class="form-control" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+                <textarea name="description" id="content" class="form-control" rows="3"  placeholder="Mô tả sản phẩm"></textarea>
 
             </div>
 

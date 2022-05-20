@@ -86,7 +86,6 @@ class ProductController extends Controller
             'category_id' => 'required',
             'price' => 'required',
             'upload' => [
-                'required',
                 'mimes:jpeg,jpg,png,gif,bmp'
             ]
 
@@ -94,15 +93,21 @@ class ProductController extends Controller
             'name.required' => 'Tên sản phẩm không để trống',
             'name.unique' => 'Tên sản phẩm đã được sử dụng',
 
-            'upload.required' => 'File không để trống',
             'upload.mimes' => 'Định dạng File không hợp lệ',
 
             'category_id.required' => 'Danh mục không để trống',
             'price.required' => 'Giá sản phẩm không để trống'
 
         ]);
-      
-        $product->update($req->only('name', 'price', 'sale_price', 'category_id','description'));
+        $data = $req->only('name', 'price', 'sale_price', 'category_id','description');
+        if( $req->has('upload') ) {
+            $ext = $req->upload->extension();
+            $file_name = time() . '.' . $ext;
+            $req->upload->move(public_path('uploads'), $file_name);
+            $data['image'] = $file_name;
+        }
+    //   dd($data);
+        $product->update($data);
         return redirect()->route('product.index');
     }
 }

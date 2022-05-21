@@ -45,8 +45,8 @@ class CategoryController extends Controller
     }
 
     public function trashed(){
-        $cats = Category::search()->onlyTrashed()->paginate(2);
-        return view('admin.category.trashed', compact('cats'));
+        $category = Category::search()->onlyTrashed()->paginate(2);
+        return view('admin.category.trashed', compact('category'));
     }
 
     public function restore($id){

@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($cats as $cat)
+        @foreach($category as $cat)
         <tr>
             <td>{{$cat->id}}</td>
             <td>{{$cat->name}}</td>
@@ -41,7 +41,7 @@
 
                 <form action="{{ route('category.forceDelete',$cat->id) }}" method="POST">
                     @csrf @method('DELETE')
-                    <a href="{{ route('category.restore',$cat->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('category.restore',$cat->id) }}" class="btn btn-success btn-sm"><i class="fa fa-undo"></i></a>
                     <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn có muốn xóa không ?')"><i class="fa fa-trash"></i></button>
 
 
@@ -53,7 +53,7 @@
     </tbody>
 </table>
 </hr>
-{{$cats->appends(request()->all())->links()}}
+{{$category->appends(request()->all())->links()}}
 
 
 @stop()

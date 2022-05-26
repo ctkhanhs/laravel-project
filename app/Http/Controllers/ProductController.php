@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Support\Facades\File;
 
 
 class ProductController extends Controller
 {
     public function index(Request $req)
     {
-        $products = Product::paginate(4);
+        $products = DB::table('products')->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.name as cname')->paginate(4);
         if ($req->key) {
             $key = $req->key;
             $products = Product::where('name', 'like', '%' . $key . '%')->paginate(2);
@@ -20,10 +21,9 @@ class ProductController extends Controller
         return view('admin.product.index', compact('products'));
     }
 
-    public function show(Product $product){
+    public function show(Product $product)
+    {
         return view('admin.product.show', compact('product'));
-
-
     }
 
     public function create()
@@ -58,7 +58,7 @@ class ProductController extends Controller
         $ext = $req->upload->extension();
         $file_name = time() . '.' . $ext;
         $req->upload->move(public_path('uploads'), $file_name);
-        $data = $req->only('name', 'price', 'sale_price', 'category_id','description');
+        $data = $req->only('name', 'price', 'sale_price', 'category_id', 'description');
         $data['image'] = $file_name;
         Product::create($data);
         return redirect()->route('product.index');
@@ -73,7 +73,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $cats = Category::orderBy('name', 'asc')->get();
-        return view('admin.product.edit', compact('product','cats'));
+        return view('admin.product.edit', compact('product', 'cats'));
     }
 
 
@@ -99,14 +99,14 @@ class ProductController extends Controller
             'price.required' => 'Giá sản phẩm không để trống'
 
         ]);
-        $data = $req->only('name', 'price', 'sale_price', 'category_id','description');
-        if( $req->has('upload') ) {
+        $data = $req->only('name', 'price', 'sale_price', 'category_id', 'description');
+        if ($req->has('upload')) {
             $ext = $req->upload->extension();
             $file_name = time() . '.' . $ext;
             $req->upload->move(public_path('uploads'), $file_name);
             $data['image'] = $file_name;
         }
-    //   dd($data);
+        //   dd($data);
         $product->update($data);
         return redirect()->route('product.index');
     }

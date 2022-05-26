@@ -46,6 +46,7 @@
                             <a class="dropdown-item" href="{{route('cart.view')}}">Cart</a>
                             <a class="dropdown-item" href="{{route('home.logout')}}">Logout</a>
                             @else
+                            <a class="dropdown-item" href="{{route('cart.view')}}">Cart</a>
                             <a class="dropdown-item" href="{{route('home.login')}}">Login</a>
                             <a class="dropdown-item" href="{{route('home.register')}}">Register</a>
                             @endif

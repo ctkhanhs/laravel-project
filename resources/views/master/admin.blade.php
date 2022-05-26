@@ -203,6 +203,9 @@ $menus = config('menu');
                     @endif
 
                     @endforeach
+                    <li>
+                        <a href="{{route('customer.index')}}"><i class="fa fa-user"></i>Khách hàng</a>
+                    </li>
 
 
 

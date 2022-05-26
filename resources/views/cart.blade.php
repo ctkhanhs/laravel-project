@@ -8,7 +8,7 @@
 <table class="table table-hover">
 <thead>
     <tr>
-        <th>Id</th>
+        <th>STT</th>
         <th>Ảnh</th>
         <th>Tên sản phẩm</th>
         <th>Giá</th>
@@ -17,9 +17,10 @@
     </tr>
 </thead>
 <tbody>
+    <?php $n=1;?>
     @foreach($carts as $item)
     <tr>
-        <td>{{$item->id}}</td>
+        <td>{{$n}}</td>
         <td>
             <img src="{{url('public/uploads/'.$item->image)}}" width="60">
         </td>
@@ -44,10 +45,13 @@
             <a href="{{route('cart.delete',$item->id)}}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
         </td>
     </tr>
+    <?php $n++;?>
     @endforeach
 </tbody>
 </table>
 <a href="{{route('cart.clear')}}" class="btn btn-danger">Xóa tất cả</a>
+<a href="{{route('cart.checkout')}}" class="btn btn-success">Đặt hàng</a>
+<h3 class="float-right">Tổng tiền: {{$total_price}} </h3>
 
 @else
 

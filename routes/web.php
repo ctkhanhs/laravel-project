@@ -33,6 +33,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.index');
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/order/{id}', [CustomerController::class, 'order'])->name('order');
+    Route::get('/otd/{id}', [CustomerController::class, 'order_details'])->name('order_detail');
+    Route::get('/order_whithout_account', [CustomerController::class, 'no_account'])->name('no_account');
 
     Route::resources([
         'category'=> CategoryController::class,

@@ -34,7 +34,7 @@
             <img src="{{url('public/uploads/'.$pro->image)}}" width="60">
             </td>
             <td>{{$pro->name}}</td>
-            <td>{{$pro->cname}}</td>
+            <td>{{$pro->cat->name}}</td>
             <td>{{$pro->price}}/{{$pro->sale_price}}</td>
             <td>
 

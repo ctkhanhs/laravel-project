@@ -206,6 +206,9 @@ $menus = config('menu');
                     <li>
                         <a href="{{route('customer.index')}}"><i class="fa fa-user"></i>Khách hàng</a>
                     </li>
+                    <li>
+                        <a href="{{route('no_account')}}"><i class="fa fa-user"></i>Đơn hàng chưa đăng ký </a>
+                    </li>
 
 
 

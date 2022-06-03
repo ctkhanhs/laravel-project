@@ -10,24 +10,6 @@
 
         <form action="" method="POST" role="form">
             @csrf
-            @if(auth()->guard('customer')->check())
-            <div class="form-group">
-                <label for="">Họ và Tên</label>
-                <input type="text" class="form-control" name="name" placeholder="Input field" value="{{Auth::guard('customer')->user()->name}}">
-            </div>
-            <div class="form-group">
-                <label for="">Email</label>
-                <input type="text" class="form-control" name="email" placeholder="Input field" value="{{Auth::guard('customer')->user()->email}}">
-            </div>
-            <div class="form-group">
-                <label for="">Số điện thoại</label>
-                <input type="text" class="form-control" name="phone" placeholder="Input field" value="{{Auth::guard('customer')->user()->phone}}">
-            </div>
-            <div class="form-group">
-                <label for="">Địa chỉ</label>
-                <input type="text" class="form-control" name="address" placeholder="Input field" value="{{Auth::guard('customer')->user()->address}}">
-            </div>
-            @else
             <div class="form-group">
                 <label for="">Họ và Tên</label>
                 <input type="text" class="form-control" name="name" placeholder="Input field">
@@ -44,7 +26,6 @@
                 <label for="">Địa chỉ</label>
                 <input type="text" class="form-control" name="address" placeholder="Input field">
             </div>
-            @endif
 
 
 

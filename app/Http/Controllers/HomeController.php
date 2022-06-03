@@ -75,7 +75,7 @@ class HomeController extends Controller
             'product_id' => $id,
             'customer_id' => auth()->guard('customer')->user()->id
         ]);
-        return redirect()->route('home');
+        return redirect()->route('home.product_favorite');
 
     }
 
@@ -89,7 +89,7 @@ class HomeController extends Controller
             'product_id' => $id,
             'customer_id' => auth()->guard('customer')->user()->id
         ])->delete();
-        return redirect()->route('home');
+        return redirect()->route('home.product_favorite');
 
     }
 }

@@ -102,10 +102,10 @@ class CartController extends Controller
             $c_id = Auth::guard('customer')->user()->id;
             if ($order = Order::create([
                 'customer_id' => $c_id,
-                'name' => Auth::guard('customer')->user()->name,
-                'email' => Auth::guard('customer')->user()->email,
-                'phone' => Auth::guard('customer')->user()->phone,
-                'address' => Auth::guard('customer')->user()->address
+                'name' => $req->name,
+                'email' => $req->email,
+                'phone' => $req->phone,
+                'address' => $req->address
             ])) {
                 $order_id = $order->id;
                 foreach ($carts as $item) {

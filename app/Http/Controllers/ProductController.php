@@ -12,8 +12,7 @@ class ProductController extends Controller
 {
     public function index(Request $req)
     {
-        $products = DB::table('products')->join('categories', 'products.category_id', '=', 'categories.id')
-            ->select('products.*', 'categories.name as cname')->paginate(4);
+        $products = Product::paginate(2);
         if ($req->key) {
             $key = $req->key;
             $products = Product::where('name', 'like', '%' . $key . '%')->paginate(2);

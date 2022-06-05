@@ -89,7 +89,7 @@
         </div>
         <div class="product-slider">
           <div class="product-slide__wrapper">
-          <x-product-list :data="$productSale"/>
+          <x-product-slide :data="$productSale"/>
           </div>
           <div class="text-center"><a class="btn -transparent -underline" href="shop-fullwidth-4col.html">View all product</a>
           </div>

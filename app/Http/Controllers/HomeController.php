@@ -26,6 +26,13 @@ class HomeController extends Controller
         return view('product', compact('product'));
     }
 
+    public function shop(){
+        $products = Product::paginate(4);
+        return view('shop', compact('products'));
+    }
+
+
+
     public function register()
     {
         return view('customer.register');

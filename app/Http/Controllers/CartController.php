@@ -60,7 +60,7 @@ class CartController extends Controller
         return redirect()->route('cart.view');
     }
 
-    private function get_total_price()
+    public function get_total_price()
     {
         $t = 0;
         $carts =  session('cart') ? session('cart') : [];
@@ -69,7 +69,7 @@ class CartController extends Controller
         }
         return $t;
     }
-    private function get_total_quantity()
+    public function get_total_quantity()
     {
         $t = 0;
         $carts =  session('cart') ? session('cart') : [];

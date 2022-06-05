@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{url('public/user')}}/css/jquery.modal.min.css" />
     <link rel="stylesheet" href="{{url('public/user')}}/css/bootstrap-drawer.min.css" />
     <link rel="stylesheet" href="{{url('public/user')}}/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--endbuild-->
 </head>
 
@@ -64,7 +65,7 @@
                             <li class="relative"><a href="{{route('home')}}">Home</a></li>
                             <li><a href="services.html">Services</a></li>
                             <li><a href="about.html">About</a></li>
-                            <li><a href="shop-fullwidth-4col.html">Shop<span class="dropable-icon"><i class="fas fa-angle-down"></i></span></a>
+                            <li><a href="{{route('home.shop')}}">Shop<span class="dropable-icon"><i class="fas fa-angle-down"></i></span></a>
                                 <ul class="dropdown-menu -wide">
                                     <ul class="dropdown-menu__col">
                                         @foreach($categories as $cat)
@@ -108,7 +109,12 @@
                                 <input type="text" placeholder="What are you looking for?" name="search" />
                                 <button><img src="{{url('public/images')}}/search-icon.png" alt="Search icon" /></button>
                             </form>
-                        </div><a class="menu-icon -wishlist" href="{{route('home.product_favorite')}}"><img src="{{url('public/images')}}/wishlist-icon.png" alt="Wishlist icon" /></a>
+                        </div>
+                        @if(auth()->guard('customer')->check())
+                        <a class="menu-icon -wishlist" href="{{route('home.product_favorite')}}"><img src="{{url('public/images')}}/wishlist-icon.png" alt="Wishlist icon" /></a>
+                        @else
+                        <a class="menu-icon -wishlist" href="{{route('home.login')}}"><img src="{{url('public/images')}}/wishlist-icon.png" alt="Wishlist icon" /></a>
+                        @endif
                         <div class="menu-cart"><a class="menu-icon" href="{{route('cart.view')}}"><img src="{{url('public/images')}}/cart-icon.png" alt="Wishlist icon" /><span class="cart__quantity">10</span></a>
                             <h5>Cart:<span>$100</span></h5>
                             <!-- <div class="menu-cart"><a class="menu-icon -cart" href="{{route('cart.view')}}"><img src="{{url('public/images')}}/cart-icon.png" alt="Wishlist icon" /><span class="cart__quantity">0</span></a>

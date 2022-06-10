@@ -25,27 +25,27 @@ class Product extends Model
     }
 
     public function price_asc(){
-        $low_price = Product::orderBy('price','ASC')->get();
+        $low_price = Product::orderBy('price','ASC');
         return $low_price;
     }
     public function price_desc(){
-        $high_price = Product::orderBy('price','DESC')->get();
+        $high_price = Product::orderBy('price','DESC');
         return $high_price;
     }
     public function name_asc(){
-        $name_asc = Product::orderBy('name','ASC')->get();
+        $name_asc = Product::orderBy('name','ASC');
         return $name_asc;
     }
     public function name_desc(){
-        $name_desc = Product::orderBy('name','DESC')->get();
+        $name_desc = Product::orderBy('name','DESC');
         return $name_desc;
     }
     public function new_product(){
-        $new = Product::orderBy('id','DESC')->get();
+        $new = Product::orderBy('id','DESC');
         return $new;
     }
     public function old_product(){
-        $old = Product::orderBy('id','ASC')->get();
+        $old = Product::orderBy('id','ASC');
         return $old;
     }
 }

@@ -15,13 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [HomeController::class, 'home'])->name('home');
 Route::get('/{category}-{slug}', [HomeController::class, 'category'])->name('home.category');
-Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
+Route::get('shop', [HomeController::class, 'shop'])->name('home.shop');
 Route::get('san-pham/{product}-{slug}', [HomeController::class, 'product'])->name('home.product');
+
 Route::get('yeu-thich/{id}', [HomeController::class, 'favorite'])->name('home.favorite');
 Route::get('bo-yeu-thich/{id}', [HomeController::class, 'unfavorite'])->name('home.unfavorite');
 Route::get('customer/san-pham-yeu-thich', [HomeController::class, 'favorites_list'])->name('home.product_favorite');
+
+Route::get('order_history', [HomeController::class, 'order_history'])->name('home.order_history');
+Route::get('order_details/{id}', [HomeController::class, 'order_details'])->name('home.order_details');
+
 Route::get('register', [HomeController::class, 'register'])->name('home.register');
 Route::post('register', [HomeController::class, 'post_register']);
+
 Route::get('login', [HomeController::class, 'login'])->name('home.login');
 Route::post('login', [HomeController::class, 'post_login']);
 Route::get('logout', [HomeController::class, 'logout'])->name('home.logout');
@@ -35,9 +41,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.index');
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
-    Route::get('/order/{id}', [CustomerController::class, 'order'])->name('order');
+    Route::get('/order/{id}', [CustomerController::class, 'order_id'])->name('order_id');
+    Route::get('/order_list', [CustomerController::class, 'order_list'])->name('order_list');
     Route::get('/otd/{id}', [CustomerController::class, 'order_details'])->name('order_detail');
-    Route::get('/order_whithout_account', [CustomerController::class, 'no_account'])->name('no_account');
+    Route::get('/order_no_account', [CustomerController::class, 'no_account'])->name('no_account');
+    Route::get('/order_have_account', [CustomerController::class, 'have_account'])->name('have_account');
 
     Route::resources([
         'category'=> CategoryController::class,

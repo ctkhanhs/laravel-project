@@ -35,7 +35,7 @@
             <td>{{$cus->address}}</td>
             <td>
 
-                <a href="{{route('order',$cus->id)}}" class="btn btn-primary btn-sm">Đơn hàng</a>
+                <a href="{{route('order_id',$cus->id)}}" class="btn btn-primary btn-sm">Đơn hàng</a>
             </td>
         </tr>
         @endforeach

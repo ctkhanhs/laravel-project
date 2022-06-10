@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\Category;
+use App\Models\OrderDetail;
 class AppServiceProvider extends ServiceProvider
 {
     /**

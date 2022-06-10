@@ -10,10 +10,10 @@ class ProductSlide extends Component
      * Create a new component instance.
      *
      * @return void
-     */
-    public function __construct()
+     */public $data;
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -24,6 +24,6 @@ class ProductSlide extends Component
     public function render()
     {
         $data = $this->data;
-        return view('components.product-slide',compact($data));
+        return view('components.product-slide',compact('data'));
     }
 }

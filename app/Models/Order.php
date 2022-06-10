@@ -12,7 +12,16 @@ class Order extends Model
     public function customer(){
         return $this->hasOne(Customer::class,'id','customer_id');
     }
-    public function odt(){
-        return $this->hasMany(OrderDetail::class,'order_id','id');
+    
+    public function order_history(){
+        $order = Order::where(['customer_id' => auth()->guard('customer')->user()->id]);
+        return $order;
     }
+
+    public function order_info($id){
+        $order_info = Order::where(['id'=>$id])->first();
+        return $order_info;
+    }
+
+
 }

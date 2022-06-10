@@ -106,7 +106,7 @@
                                     </td>
                                     <td>{{$item->price}}</td>
                                     <td>
-                                            <form action="{{route('cart.update',$item->id)}}" method="GET" class="form-inline" role="form">
+                                        <form action="{{route('cart.update',$item->id)}}" method="GET" class="form-inline" role="form">
 
                                             <div class="form-group">
                                                 <input class="form-control" name="quantity" value="{{$item->quantity}}">

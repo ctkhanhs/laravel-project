@@ -91,7 +91,7 @@
           <div class="product-slide__wrapper">
           <x-product-slide :data="$productSale"/>
           </div>
-          <div class="text-center"><a class="btn -transparent -underline" href="shop-fullwidth-4col.html">View all product</a>
+          <div class="text-center"><a class="btn -transparent -underline" href="{{route('home.shop')}}">View all product</a>
           </div>
         </div>
       </div>

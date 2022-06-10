@@ -38,7 +38,17 @@ return [
                 'icon' => 'fa-circle-o'
             ]
         ]
-    ]
+            ],
+            [
+                'route' =>'customer.index',
+                'title' => 'Khách hàng',
+                'icon' => 'fa-user'
+            ]
+            ,[
+                'route' =>'order_list',
+                'title' => 'Đơn hàng',
+                'icon' => 'fa-dashboard'
+            ]
    
 
 ];

@@ -20,12 +20,19 @@
             </div>
             <div class="col-12 col-md-8 col-lg-9 col-xl-10">
                 <div class="shop-header">
-                    <select class="customed-select" name="#">
-                        <option value="az">A to Z</option>
-                        <option value="za">Z to A</option>
-                        <option value="low-high">Low to High Price</option>
-                        <option value="high-low">High to Low Price</option>
-                    </select>
+                    <form method="get" action="" role="form" class="form-inline">
+                        <div class="form-group">
+                            <select class="customed-select" name="order">
+                                <option value="new">New</option>
+                                <option value="old">Old</option>
+                                <option value="name-asc">A to Z</option>
+                                <option value="name-desc">Z to A</option>
+                                <option value="price-asc" name="low">Low to High Price</option>
+                                <option value="price-desc">High to Low Price</option>
+                            </select>
+                        </div>
+                        <button type="submit">Lọc</button>
+                    </form>
                 </div>
                 <div class="shop-products">
                     <div class="shop-products__gird">
@@ -34,7 +41,7 @@
                             <div class="col-6 col-lg-4 col-xl-3 px-1 px-xl-3">
                                 <div class="product ">
                                     <div class="product-type"></div>
-                                    <div class="product-thumb"><a class="product-thumb__image" href="{{ route('home.product',['product'=>$pro->id,'slug'=>Str::slug($pro->name)]) }}"><img src="{{url('public/uploads/'.$pro->image)}}" alt="Product image" /><img src="assets/images/product/5.png" alt="Product image" /></a>
+                                    <div class="product-thumb"><a class="product-thumb__image" href="{{ route('home.product',['product'=>$pro->id,'slug'=>Str::slug($pro->name)]) }}"><img src="{{url('public/uploads/'.$pro->image)}}" alt="Product image" /></a>
                                         <div class="product-thumb__actions">
                                             <div class="product-btn"><a class="btn -white product__actions__item -round product-atc" href="{{route('cart.add',$pro->id)}}"><i class="fas fa-shopping-bag"></i></a>
                                             </div>
@@ -69,10 +76,10 @@
 
                             @endforeach
                         </div>
+                        {{$data->appends(request()->all())->links()}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{{$data->appends(request()->all())->links()}}

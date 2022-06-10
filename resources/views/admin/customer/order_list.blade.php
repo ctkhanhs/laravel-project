@@ -2,19 +2,8 @@
 @section('title','Danh sách đơn hàng')
 @section('main')
 
-<form action="" method="GET" class="form-inline" role="form">
-
-    <div class="form-group">
-        <label class="sr-only" for="">label</label>
-        <input type="text" class="form-control" name="key" placeholder="Input field">
-    </div>
-
-
-
-    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-</form>
-
-
+<a href="{{route('no_account')}}" class="btn btn-primary"> Đơn hàng chưa đăng ký</a>
+<a href="{{route('have_account')}}" class="btn btn-success"> Đơn hàng đã đăng ký</a>
 <table class="table table-hover">
     <thead>
         <tr>

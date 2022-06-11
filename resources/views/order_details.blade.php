@@ -57,6 +57,19 @@
                     <div class="col-12 col-md-4">
                         <div class="cart__total__content">
                             <h3>Total</h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Total Quantity</th>
+                                        <td class="final-price">{{$quantity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Amount</th>
+                                        <td class="final-price">{{$amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>

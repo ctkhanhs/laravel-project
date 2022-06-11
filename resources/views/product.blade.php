@@ -62,12 +62,23 @@
                                 <div class="product-detail__content__footer">
                                     <div class="product-detail__controller">
                                         <div class="quantity-controller -border -round">
-                                            <div class="quantity-controller__btn -descrease">-</div>
+                                            <!-- <div class="quantity-controller__btn -descrease">-</div>
                                             <div class="quantity-controller__number">2</div>
-                                            <div class="quantity-controller__btn -increase">+</div>
-                                        </div>
-                                        <div class="add-to-cart -dark"><a class="btn -round -red" href="{{route('cart.add',$product->id)}}"><i class="fas fa-shopping-bag"></i></a>
-                                            <h5>Add to cart</h5>
+                                            <div class="quantity-controller__btn -increase">+</div> -->
+                                            <td>
+                                                <form action="{{route('cart.add',$product->id)}}" method="GET" class="form-inline" role="form">
+
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="quantity">
+                                                    </div>
+
+
+                                                    <div class="add-to-cart -dark">
+                                                    <button type="submit" class="btn -round -red"><i class="fas fa-shopping-bag"></i><h5>Add to cart</h5></button>
+                                                    <h5>Add to cart</h5>
+                                                    </div>
+                                                </form>
+                                            </td>
                                         </div>
                                         <div class="product-detail__controler__actions"></div>
                                         @if(auth()->guard('customer')->check())

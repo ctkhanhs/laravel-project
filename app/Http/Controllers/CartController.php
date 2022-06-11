@@ -8,49 +8,28 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
-
-    public $total_quantity = 0;
-    public $total_price = 0;
-
-    public function add($id, $quantity = 1)
+    public function add(Cart $cart, $id)
     {
-        $carts =  session('cart') ? session('cart') : [];
-        if (isset($carts[$id])) {
-            $carts[$id]->quantity += $quantity;
-        } else {
-            $pro = Product::find($id);
-            $item = new \stdClass();
-            $item->id = $pro->id;
-            $item->name = $pro->name;
-            $item->image = $pro->image;
-            $item->price = $pro->sale_price > 0 ? $pro->sale_price : $pro->price;
-            $item->quantity = $quantity;
-            $carts[$id] = $item;
-        }
-        session(['cart' => $carts]);
+        $pro = Product::find($id);
+        $quantity = request('quantity', 1);
+        $cart->add($pro,$quantity);
         return redirect()->route('cart.view');
     }
 
-    public function update($id)
+    public function update(Cart $cart,$id)
     {
         $quantity = request('quantity', 1);
-        $carts =  session('cart') ? session('cart') : [];
-        if (isset($carts[$id])) {
-            $carts[$id]->quantity = $quantity;
-        }
+        $cart->update($id,$quantity);
         return redirect()->route('cart.view');
     }
 
-    public function delete($id)
+    public function delete(Cart $cart,$id)
     {
-        $carts =  session('cart') ? session('cart') : [];
-        if (isset($carts[$id])) {
-            unset($carts[$id]);
-        }
-        session(['cart' => $carts]);
+        $cart->delete($id);
         return redirect()->route('cart.view');
     }
 
@@ -60,44 +39,19 @@ class CartController extends Controller
         return redirect()->route('cart.view');
     }
 
-    public function get_total_price()
-    {
-        $t = 0;
-        $carts =  session('cart') ? session('cart') : [];
-        foreach ($carts as $item) {
-            $t += $item->quantity * $item->price;
-        }
-        return $t;
-    }
-    public function get_total_quantity()
-    {
-        $t = 0;
-        $carts =  session('cart') ? session('cart') : [];
-        foreach ($carts as $item) {
-            $t += $item->quantity;
-        }
-        return $t;
-    }
 
     public function view()
     {
-        $carts =  session('cart') ? session('cart') : [];
-        $total_quantity = $this->get_total_quantity();
-        $total_price = $this->get_total_price();
-        return view('cart', compact('carts', 'total_quantity', 'total_price'));
+        return view('cart');
     }
 
     public function form()
     {
-        $carts =  session('cart') ? session('cart') : [];
-        $total_quantity = $this->get_total_quantity();
-        $total_price = $this->get_total_price();
-        return view('checkout', compact('carts', 'total_quantity', 'total_price'));
+        return view('checkout');
     }
 
-    public function submit_form(Request $req)
+    public function submit_form(Request $req,Cart $cart)
     {
-        $carts =  session('cart') ? session('cart') : [];
         if (Auth::guard('customer')->check()) {
             $c_id = Auth::guard('customer')->user()->id;
             if ($order = Order::create([
@@ -108,7 +62,7 @@ class CartController extends Controller
                 'address' => $req->address
             ])) {
                 $order_id = $order->id;
-                foreach ($carts as $item) {
+                foreach ($cart->items as $item) {
                     OrderDetail::create([
                         'order_id' => $order_id,
                         'product_id' => $item->id,
@@ -122,7 +76,7 @@ class CartController extends Controller
         } else {
             if ($order = Order::create($req->only('name','email','address','phone'))) {
                 $order_id = $order->id;
-                foreach ($carts as $item) {
+                foreach ($cart->items as $item) {
                     OrderDetail::create([
                         'order_id' => $order_id,
                         'product_id' => $item->id,

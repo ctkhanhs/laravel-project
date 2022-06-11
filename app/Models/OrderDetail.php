@@ -20,4 +20,23 @@ class OrderDetail extends Model
         $order_details = OrderDetail::where(['order_id'=> $id]);
         return $order_details;
     }
+
+    public function totalQuantity($id){
+        $order_details = OrderDetail::where(['order_id'=> $id])->get();
+        $total = 0;
+        foreach ($order_details as $otd){
+            $total += $otd->quantity;
+        }
+        return $total;
+
+    }
+    public function totalAmount($id){
+        $order_details = OrderDetail::where(['order_id'=> $id])->get();
+        $total = 0;
+        foreach ($order_details as $odt){
+            $total += $odt->quantity*$odt->price;
+        }
+        return $total;
+
+    }
 }

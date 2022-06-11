@@ -9,7 +9,6 @@ use App\Models\Customer;
 use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\OrderDetail;
-use App\Helper\Helper;
 
 class HomeController extends Controller
 {
@@ -155,6 +154,8 @@ class HomeController extends Controller
         $c_id = auth()->guard('customer')->user()->id;
         $order_details = OrderDetail::order_details($id)->get();
         $order = Order::order_info($c_id);
-        return view('order_details',compact('order_details','order'));
+        $quantity=OrderDetail::totalQuantity($id);
+        $amount=OrderDetail::totalAmount($id);
+        return view('order_details',compact('order_details','order','amount','quantity'));
     }
 }

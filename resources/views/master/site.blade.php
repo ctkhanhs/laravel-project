@@ -116,8 +116,8 @@
             @else
             <a class="menu-icon -wishlist" href="{{route('home.login')}}"><img src="{{url('public/images')}}/wishlist-icon.png" alt="Wishlist icon" /></a>
             @endif
-            <div class="menu-cart"><a class="menu-icon" href="{{route('cart.view')}}"><img src="{{url('public/images')}}/cart-icon.png" alt="Wishlist icon" /><span class="cart__quantity">10</span></a>
-              <h5>Cart:<span>$100</span></h5>
+            <div class="menu-cart"><a class="menu-icon" href="{{route('cart.view')}}"><img src="{{url('public/images')}}/cart-icon.png" alt="Wishlist icon" /><span class="cart__quantity">{{$cart->totalQuantity}}</span></a>
+              <h5>Cart:<span>{{$cart->totalAmount}}</span></h5>
               <!-- <div class="menu-cart"><a class="menu-icon -cart" href="{{route('cart.view')}}"><img src="{{url('public/images')}}/cart-icon.png" alt="Wishlist icon" /><span class="cart__quantity">0</span></a>
               <h5>Cart:<span>$100</span></h5>
             </div><a class="menu-icon -navbar" href="#">

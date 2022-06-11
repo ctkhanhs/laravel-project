@@ -21,14 +21,19 @@ class CustomerController extends Controller
         $orders = Order::whereNotNull('customer_id')->paginate(2);
         return view('admin.customer.order_list',compact('orders'));
     }
-    public function order_list(){
+    public function order_list(Request $req){
+        $before = $req->get('before');
+        $after = $req->get('after');
         $orders = Order::paginate(2);
+        // if($before <= $orders->created_at && $orders->created_at <= $after )
         return view('admin.customer.order_list',compact('orders'));
     }
     public function order_details($id,Order $order){
         $order_details = OrderDetail::order_details($id)->paginate(2);
         $order = Order::order_info($id);
-        return view('admin.customer.order_detail',compact('order_details','order'));
+        $quantity=OrderDetail::totalQuantity($id);
+        $amount=OrderDetail::totalAmount($id);
+        return view('admin.customer.order_detail',compact('order_details','order','quantity','amount'));
     }
     public function no_account() {
         $orders = Order::where(['customer_id'=> NULL])->paginate(2);

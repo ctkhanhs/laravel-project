@@ -48,6 +48,10 @@ return [
                 'route' =>'order_list',
                 'title' => 'Đơn hàng',
                 'icon' => 'fa-dashboard'
+            ],[
+                'route' =>'banner.index',
+                'title' => 'Banner',
+                'icon' => 'fa-dashboard'
             ]
    
 

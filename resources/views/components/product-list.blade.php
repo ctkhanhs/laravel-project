@@ -76,7 +76,10 @@
 
                             @endforeach
                         </div>
-                        {{$data->appends(request()->all())->links()}}
+                        <div class="paginator">
+                            {{$data->appends(request()->all())->links()}}
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -48,7 +48,9 @@
                         </tbody>
                     </table>
                 </div>
-                {{$orders->links()}}
+                <div class="paginator">
+                    {{$orders->links()}}
+                </div>
             </div>
         </div>
     </div>

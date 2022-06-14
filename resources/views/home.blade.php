@@ -3,9 +3,10 @@
 <div id="content">
     <div class="slider -style-1 slider-arrow-middle">
       <div class="slider__carousel">
+        @foreach($banner as $ban)
         <div class="slider__carousel__item slider-1">
           <div class="container">
-            <div class="slider-background"><img class="slider-background" src="{{url('public/images')}}/bg1.png" alt="Slider background" /></div>
+            <div class="slider-background"><img class="slider-background" src="{{url('public/uploads/'.$ban->image)}}" alt="Slider background" /></div>
             <div class="slider-content">
               <h5 class="slider-content__subtitle" data-animation-in="fadeInUp" data-animation-delay="0.1">bringing you</h5>
               <h1 class="slider-content__title" data-animation-in="fadeInUp" data-animation-delay="0.2">Inner beauty out
@@ -15,30 +16,7 @@
             </div>
           </div>
         </div>
-        <div class="slider__carousel__item slider-2">
-          <div class="container">
-            <div class="slider-background"><img class="slider-background" src="{{url('public/images')}}/bg2.png" alt="Slider background" /></div>
-            <div class="slider-content">
-              <h5 class="slider-content__subtitle" data-animation-in="fadeInUp" data-animation-delay="0.1">When you look good</h5>
-              <h1 class="slider-content__title" data-animation-in="fadeInUp" data-animation-delay="0.2">You feel good
-              </h1>
-              <div data-animation-in="fadeInUp" data-animation-out="fadeInDown" data-animation-delay="0.4"><a class="btn -red" href="#">Appointment</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="slider__carousel__item slider-3">
-          <div class="container">
-            <div class="slider-background"><img class="slider-background" src="{{url('public/images')}}/bg3.png" alt="Slider background" /></div>
-            <div class="slider-content">
-              <h5 class="slider-content__subtitle" data-animation-in="fadeInUp" data-animation-delay="0.1">We make best makeup</h5>
-              <h1 class="slider-content__title" data-animation-in="fadeInUp" data-animation-delay="0.2">Beauty salon
-              </h1>
-              <div data-animation-in="fadeInUp" data-animation-out="fadeInDown" data-animation-delay="0.4"><a class="btn -red" href="#">Appointment</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
     <div class="introduction-one">

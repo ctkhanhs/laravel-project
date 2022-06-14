@@ -22,10 +22,9 @@ class CustomerController extends Controller
         return view('admin.customer.order_list',compact('orders'));
     }
     public function order_list(Request $req){
+        $orders = Order::paginate(2);
         $before = $req->get('before');
         $after = $req->get('after');
-        $orders = Order::paginate(2);
-        // if($before <= $orders->created_at && $orders->created_at <= $after )
         return view('admin.customer.order_list',compact('orders'));
     }
     public function order_details($id,Order $order){

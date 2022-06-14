@@ -49,7 +49,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resources([
         'category'=> CategoryController::class,
-        'product'=> ProductController::class
+        'product'=> ProductController::class,
+        'banner'=> BannerController::class
+
     ]);
 
     Route::group(['prefix' => 'category'], function () {

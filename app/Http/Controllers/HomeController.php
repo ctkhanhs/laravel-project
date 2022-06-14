@@ -9,13 +9,15 @@ use App\Models\Customer;
 use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
     public function home()
     {
         $productSale = Product::orderBy('id', 'DESC')->limit(8)->get();
-        return view('home', compact('productSale'));
+        $banner = Banner::orderBy('id', 'DESC')->limit(4)->get();
+        return view('home', compact('productSale','banner'));
     }
 
     public function category(Category $category,Request $req)
@@ -23,22 +25,22 @@ class HomeController extends Controller
         $products = $category->products()->paginate(4);
         $order = $req->get('order');
         if ($order == 'price-asc') {
-            $products = Product::price_asc();
+            $products = Product::price_asc()->paginate(4);
         }
         elseif ($order == 'price-desc') {
-            $products = Product::price_desc();
+            $products = Product::price_desc()->paginate(4);
         }
         elseif ($order == 'name-asc') {
-            $products = Product::name_asc();
+            $products = Product::name_asc()->paginate(4);
         }
         elseif ($order == 'name-desc') {
-            $products = Product::name_desc();
+            $products = Product::name_desc()->paginate(4);
         }
         elseif ($order == 'new') {
-            $products = Product::new_product();
+            $products = Product::new_product()->paginate(4);
         }
         elseif ($order == 'old') {
-            $products = Product::old_product();
+            $products = Product::old_product()->paginate(4);
         }
         return view('category', compact('products','category'));
     }
@@ -73,10 +75,10 @@ class HomeController extends Controller
         return view('shop', compact('products'));
     }
 
-    // public function product_search(){
-    //     $products = Product::search()->paginate(4);
-    //     return view('shop', compact('products'));
-    // }
+    public function product_search(){
+        $products = Product::search()->paginate(4);
+        return view('shop', compact('products'));
+    }
 
     public function register()
     {

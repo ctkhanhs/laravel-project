@@ -2,20 +2,29 @@
 @section('title','Chi tiết đơn hàng')
 @section('main')
 
-<div>
-    <p>
-        <strong>Tên khách hàng: </strong>{{$order->name}}
-    </p>
-    <p>
-        <strong>Email:</strong> {{$order->email}}
-    </p>
-    <p>
-        <strong>Số điện thoại:</strong> {{$order->phone}}
-    </p>
-    <p>
-        <strong>Địa chỉ:</strong> {{$order->address}}
-    </p>
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <p>
+                <strong>Tên khách hàng: </strong>{{$order->name}}
+            </p>
+            <p>
+                <strong>Email:</strong> {{$order->email}}
+            </p>
+            <p>
+                <strong>Số điện thoại:</strong> {{$order->phone}}
+            </p>
+            <p>
+                <strong>Địa chỉ:</strong> {{$order->address}}
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>Tổng số lượng: {{$quantity}}</h4> 
+        <h4>Tổng tiền: {{$amount}}</h4> 
+    </div>
 </div>
+
 
 <hr>
 

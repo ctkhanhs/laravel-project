@@ -74,7 +74,7 @@
 
 
                                                     <div class="add-to-cart -dark">
-                                                    <button type="submit" class="btn -round -red"><i class="fas fa-shopping-bag"></i><h5>Add to cart</h5></button>
+                                                    <button type="submit" class="btn -round -red"><i class="fas fa-shopping-bag"></i></button>
                                                     <h5>Add to cart</h5>
                                                     </div>
                                                 </form>

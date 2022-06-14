@@ -1,9 +1,26 @@
+@extends('master.site')
+@section('content')
 
-<div class="jumbotron">
+
+
+<div class="breadcrumb">
     <div class="container">
-        <h1>Đặt hàng thành công</h1>
-        <p>
-            <a class="btn btn-primary btn-lg">Learn more</a>
-        </p>
+        <h2>Đặt hàng thành công</h2>
+        <div class="cart__table__footer"><a href="{{route('home')}}"><i class="fal fa-long-arrow-left"></i>Continue Shopping</a></div>
     </div>
 </div>
+</div>
+<div class="instagram-two">
+    <div class="instagram-two-slider">
+        <a class="slider-item" href="https://www.instagram.com/"><img src="{{url('public/images')}}/1.png" alt="Instagram image" /></a>
+        <a class="slider-item" href="https://www.instagram.com/"><img src="{{url('public/images')}}/2.png" alt="Instagram image" /></a>
+        <a class="slider-item" href="https://www.instagram.com/"><img src="{{url('public/images')}}/3.png" alt="Instagram image" /></a>
+        <a class="slider-item" href="https://www.instagram.com/"><img src="{{url('public/images')}}/4.png" alt="Instagram image" /></a>
+        <a class="slider-item" href="https://www.instagram.com/"><img src="{{url('public/images')}}/5.png" alt="Instagram image" /></a>
+        <a class="slider-item" href="https://www.instagram.com/"><img src="{{url('public/images')}}/6.png" alt="Instagram image" /></a>
+    </div>
+</div>
+
+
+
+@stop()

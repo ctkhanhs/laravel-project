@@ -27,7 +27,7 @@ class AdminController extends Controller
         if($check){
             return redirect()->route('admin.index');
         }
-        return redirect()->back();
+        return redirect()->back()->with('no','Tài khoản hoặc mật khẩu không chính xác');
     }
 
     public function logout(){

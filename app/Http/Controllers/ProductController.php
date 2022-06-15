@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Category;
+use App\Http\Requests\Product\ProductStoreRequest as ReqStore;
+use App\Http\Requests\Product\ProductUpdateRequest as ReqUpdate;
 
 
 class ProductController extends Controller
@@ -31,29 +33,8 @@ class ProductController extends Controller
         return view('admin.product.create', compact('cats'));
     }
 
-    public function store(Request $req)
+    public function store(ReqStore $req)
     {
-        $req->validate([
-            'name' => 'required|unique:products',
-            'category_id' => 'required',
-            'category_id' => 'required',
-            'price' => 'required',
-            'upload' => [
-                'required',
-                'mimes:jpeg,jpg,png,gif,bmp'
-            ]
-
-        ], [
-            'name.required' => 'Tên sản phẩm không để trống',
-            'name.unique' => 'Tên sản phẩm đã được sử dụng',
-
-            'upload.required' => 'File không để trống',
-            'upload.mimes' => 'Định dạng File không hợp lệ',
-
-            'category_id.required' => 'Danh mục không để trống',
-            'price.required' => 'Giá sản phẩm không để trống'
-
-        ]);
         $ext = $req->upload->extension();
         $file_name = time() . '.' . $ext;
         $req->upload->move(public_path('uploads'), $file_name);

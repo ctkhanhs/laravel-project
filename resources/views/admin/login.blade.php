@@ -20,7 +20,13 @@
         <div class="login-logo">
             <a href=""><b>Admin</b>LTE</a>
         </div>
+        @if(Session::has('no'))
 
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{Session::get('no')}}</strong>
+        </div>
+        @endif
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
             <form action="" method="post">
@@ -35,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        <div class="checkbox icheck" style="margin-left:20px"> 
+                        <div class="checkbox icheck" style="margin-left:20px">
                             <label>
                                 <input type="checkbox" name="remember"> Remember Me
                             </label>

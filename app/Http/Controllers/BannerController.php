@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Http\Requests\Banner\BannerStoreRequest as ReqStore;
 
 class BannerController extends Controller
 {
@@ -16,17 +17,7 @@ class BannerController extends Controller
         return view('admin.banner.create');
     }
 
-    public function store(Request $req){
-        $req->validate([
-            'upload' => [
-                'required',
-                'mimes:jpeg,jpg,png,gif,bmp'
-            ]
-
-        ], [
-            'upload.required' => 'File không để trống',
-            'upload.mimes' => 'Định dạng File không hợp lệ',
-        ]);
+    public function store(ReqStore $req){
         $ext = $req->upload->extension();
         $file_name = time() . '.' . $ext;
         $req->upload->move(public_path('uploads'), $file_name);

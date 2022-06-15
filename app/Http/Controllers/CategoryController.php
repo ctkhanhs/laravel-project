@@ -29,8 +29,11 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if($category->products->count() > 0){
+            return redirect()->route('category.index')->with('no','Danh mục đang tồn tại sản phẩm');
+        }
         $category->delete();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('yes','Xóa danh mục thành công');
     }
 
     public function edit(Category $category)
@@ -57,11 +60,8 @@ class CategoryController extends Controller
     }
     public function forceDelete($id){
         $category = Category::withTrashed()->find($id);
-        if($category->products->count() > 0){
-            return redirect()->route('category.index')->with('no','Danh mục đang tồn tại sản phẩm');
-        }
         $category -> forceDelete();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('yes','Danh mục đã được xóa vĩnh viễn');
         
     }
 }

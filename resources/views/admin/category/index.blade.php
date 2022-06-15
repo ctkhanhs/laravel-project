@@ -2,6 +2,21 @@
 @section('title','Danh mục')
 @section('main')
 
+@if(Session::has('no'))
+
+<div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>{{Session::get('no')}}</strong>
+</div>
+@endif
+@if(Session::has('yes'))
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {{Session::get('yes')}}
+</div>
+@endif
+
+
 <form action="" method="GET" class="form-inline" role="form">
 
     <div class="form-group">
@@ -32,9 +47,9 @@
             <td>{{$cat->name}}</td>
             <td>
                 @if($cat->status==1)
-                    <span class="label label-success">Hiển thị</span>
+                <span class="label label-success">Hiển thị</span>
                 @else
-                    <span class="label label-danger">Ẩn</span>
+                <span class="label label-danger">Ẩn</span>
                 @endif
 
             </td>

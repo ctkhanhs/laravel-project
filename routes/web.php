@@ -59,6 +59,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('restore/{category}', [CategoryController::class, 'restore'])->name('category.restore');
         Route::delete('force-delete/{category}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
     });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('product/trashed', [ProductController::class, 'trashed'])->name('product.trashed');
+        Route::get('restore/{product}', [ProductController::class, 'restore'])->name('product.restore');
+        Route::delete('force-delete/{product}', [ProductController::class, 'forceDelete'])->name('product.forceDelete');
+    });
 });
 
 Route::group(['prefix' => 'cart'], function () {

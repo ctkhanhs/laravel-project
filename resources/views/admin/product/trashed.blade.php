@@ -2,19 +2,6 @@
 @section('title','Danh sách sản phẩm')
 @section('main')
 
-@if(Session::has('no'))
-
-<div class="alert alert-danger">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>{{Session::get('no')}}</strong>
-</div>
-@endif
-@if(Session::has('yes'))
-<div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {{Session::get('yes')}}
-</div>
-@endif
 <form action="" method="GET" class="form-inline" role="form">
 
     <div class="form-group">
@@ -22,11 +9,7 @@
         <input type="text" class="form-control" name="key" placeholder="Input field">
     </div>
 
-
-
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-    <a href="{{route('product.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
-    <a href="{{route('product.trashed')}}" class="btn btn-danger"><i class="fa fa-trash"></i> Thùng rác</a>
 </form>
 
 
@@ -52,10 +35,9 @@
             <td>{{$pro->price}}/{{$pro->sale_price}}</td>
             <td>
 
-                <form action="{{ route('product.destroy',$pro->id) }}" method="POST">
+            <form action="{{ route('product.forceDelete',$pro->id) }}" method="POST">
                     @csrf @method('DELETE')
-                    <a href="{{ route('product.show',$pro->id) }}" class="btn btn-primary btn-sm">Chi tiết</a>
-                    <a href="{{ route('product.edit',$pro->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('product.restore',$pro->id) }}" class="btn btn-success btn-sm"><i class="fa fa-undo"></i></a>
                     <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn có muốn xóa không ?')"><i class="fa fa-trash"></i></button>
 
 

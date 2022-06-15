@@ -65,8 +65,11 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if($product->order_details->count() > 0){
+            return redirect()->route('product.index')->with('no','Sản phẩm tồn tại chi tiết đơn hàng');
+        }
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('yes','Xóa sản phẩm thành công');
     }
 
     public function edit(Product $product)
@@ -108,5 +111,23 @@ class ProductController extends Controller
         //   dd($data);
         $product->update($data);
         return redirect()->route('product.index');
+    }
+
+    public function trashed(){
+        $products = Product::search()->onlyTrashed()->paginate(2);
+        return view('admin.product.trashed', compact('products'));
+    }
+
+    public function restore($id){
+        $product = Product::withTrashed()->find($id);
+        $product -> restore();
+        return redirect()->route('product.index');
+        
+    }
+    public function forceDelete($id){
+        $product = Product::withTrashed()->find($id);
+        $product -> forceDelete();
+        return redirect()->route('product.index')->with('yes','Sản phẩm đã được xóa vĩnh viễn');
+        
     }
 }

@@ -12,7 +12,6 @@
 
 
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-    <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
 </form>
 
 

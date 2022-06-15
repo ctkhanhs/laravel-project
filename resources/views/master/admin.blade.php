@@ -242,18 +242,6 @@ $menus = config('menu');
                         </div>
                     </div>
                     <div class="box-body">
-                        @if(Session::has('no'))
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            {{Session::get('yes')}}
-                        </div>
-                        @endif
-                        @if(Session::has('yes'))
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            {{Session::get('yes')}}
-                        </div>
-                        @endif
 
                         @yield('main')
                     </div>

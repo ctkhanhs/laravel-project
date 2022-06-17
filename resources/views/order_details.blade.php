@@ -2,11 +2,11 @@
 @section('content')
 <div class="breadcrumb">
     <div class="container">
-        <h2>Order Details</h2>
+        <h2>Chi tiết đơn hàng</h2>
         <ul>
-            <li>Home</li>
-            <li>Order</li>
-            <li class="active">Order Details</li>
+            <li>Trang chủ</li>
+            <li>Đơn hàng</li>
+            <li class="active">Chi tiết đơn hàng</li>
         </ul>
     </div>
 </div>
@@ -17,7 +17,7 @@
                 <div class="cart__total">
                     <div class="col-12">
                         <div class="cart__total__content">
-                            <h3>Total</h3>
+                            <h3>Thông tin liên hệ</h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -37,11 +37,11 @@
                                         <td>{{$order->address}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Total Quantity</th>
+                                        <th>Tổng số lượng</th>
                                         <td class="final-price">{{$quantity}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Total Amount</th>
+                                        <th>Thành tiền</th>
                                         <td class="final-price">{{$amount}}</td>
                                     </tr>
                                 </tbody>
@@ -66,10 +66,10 @@
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng tiền</th>
                                         </tr>
                                     </thead>
                                     <tbody>

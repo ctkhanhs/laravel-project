@@ -9,6 +9,7 @@ use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
 use App\Models\Cart;
+use App\Http\Requests\Customer\CustomerCheckoutRequest as ReqCheckout;
 
 class CartController extends Controller
 {
@@ -50,7 +51,7 @@ class CartController extends Controller
         return view('checkout');
     }
 
-    public function submit_form(Request $req,Cart $cart)
+    public function submit_form(ReqCheckout $req,Cart $cart)
     {
         if (Auth::guard('customer')->check()) {
             $c_id = Auth::guard('customer')->user()->id;
@@ -71,7 +72,7 @@ class CartController extends Controller
                     ]);
                 }
                 session(['cart' => '']);
-                return redirect()->route('cart.checkout_success')->with('success', 'dat hang thanh cong');
+                return redirect()->route('cart.checkout_success');
             }
         } else {
             if ($order = Order::create($req->only('name','email','address','phone'))) {
@@ -85,7 +86,7 @@ class CartController extends Controller
                     ]);
                 }
                 session(['cart' => '']);
-                return redirect()->route('cart.checkout_success')->with('success', 'dat hang thanh cong');
+                return redirect()->route('cart.checkout_success');
             }
         }
     }

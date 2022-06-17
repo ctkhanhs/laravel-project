@@ -17,9 +17,9 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned()->nullable();
             $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');

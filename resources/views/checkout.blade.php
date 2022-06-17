@@ -3,11 +3,10 @@
 <div id="content">
     <div class="breadcrumb">
         <div class="container">
-            <h2>Checkout</h2>
+            <h2>Thanh toán</h2>
             <ul>
-                <li>Home</li>
-                <li>Shop</li>
-                <li class="active">Checkout</li>
+                <li>Trang chủ</li>
+                <li class="active">Thanh toán</li>
             </ul>
         </div>
     </div>
@@ -22,8 +21,7 @@
                                 <div class="checkout__form">
                                     <div class="checkout__form__contact">
                                         <div class="checkout__form__contact__title">
-                                            <h5 class="checkout-title">Contact information</h5>
-                                            <p> Already have an account?<a href="#">Login</a></p>
+                                            <h5 class="checkout-title">Thông tin liên hệ</h5>
                                         </div>
                                     </div>
                                     <div class="checkout__form__shipping">
@@ -31,8 +29,10 @@
                                             <div class="col-12">
                                                 <div class="input-validator">
                                                     <label for="">Email</label>
-                                                    <input type="text" name="email" />
-                                                    </label>
+                                                    <input type="email" name="email" />
+                                                    @error('email')
+                                                    <small class="help-block">{{$message}}</small>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -40,6 +40,9 @@
                                                     <label>Họ và tên<span>*</span>
                                                         <input type="text" name="name" />
                                                     </label>
+                                                    @error('name')
+                                                    <small class="help-block">{{$message}}</small>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -47,6 +50,9 @@
                                                     <label>Số điện thoại<span>*</span>
                                                         <input type="text" name="phone">
                                                     </label>
+                                                    @error('phone')
+                                                    <small class="help-block">{{$message}}</small>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -54,6 +60,9 @@
                                                     <label>Địa chỉ <span>*</span>
                                                         <input type="text" name="address" placeholder="Steet address" />
                                                     </label>
+                                                    @error('address')
+                                                    <small class="help-block">{{$message}}</small>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -67,9 +76,9 @@
                             <div class="row">
                                 <div class="col-12 col-md-6 col-lg-12 ml-auto">
                                     <div class="checkout__total">
-                                        <h5 class="checkout-title">Your order</h5>
+                                        <h5 class="checkout-title">Đơn hàng</h5>
                                         <div class="checkout__total__price">
-                                            <h5>Product</h5>
+                                            <h5>Sản phẩm</h5>
                                             <table>
                                                 <colgroup>
                                                     <col style="width: 70%" />
@@ -89,8 +98,8 @@
                                                 <table>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Total</td>
-                                                            <td>{{$cart->totalAmount}}</td>
+                                                            <td>Tổng tiền</td>
+                                                            <td>{{$cart->totalAmount}} đ</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

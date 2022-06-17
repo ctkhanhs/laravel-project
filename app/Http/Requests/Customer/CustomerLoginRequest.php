@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Http\Requests\Customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryStoreRequest extends FormRequest
+class CustomerLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,16 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required,unique:categories'
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
-    public function messages()
-    {
+
+    public function messages(){
         return [
-            'name.required'=>'Tên danh mục không để trống',
-            'name.unique'=>'Tên danh mục đã được sử dụng'
+            'email.required' => 'Email không để không để trống',
+            'email.email' => 'Email không hợp lệ',
+            'password.required' => 'Mật khẩu không để không để trống'
         ];
     }
 }

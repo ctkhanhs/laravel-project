@@ -3,10 +3,10 @@
 <div id="content">
   <div class="breadcrumb">
     <div class="container">
-      <h2>Shop</h2>
+      <h2>Sản phẩm</h2>
       <ul>
-        <li>Home</li>
-        <li class="active">Shop</li>
+        <li>Trang chủ</li>
+        <li class="active">Sản phẩm</li>
       </ul>
     </div>
   </div>

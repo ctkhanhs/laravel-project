@@ -6,10 +6,10 @@
                     <div class="shop-sidebar__content">
                         <div class="shop-sidebar__section -categories">
                             <div class="section-title -style1 -medium" style="margin-bottom:1.875em">
-                                <h2>Categories</h2><img src="{{url('public/images')}}/content-deco.png" alt="Decoration" />
+                                <h2>Sản phẩm</h2><img src="{{url('public/images')}}/content-deco.png" alt="Decoration" />
                             </div>
                             <ul>
-                                <li><a href="{{route('home.shop')}}">All</a></li>
+                                <li><a href="{{route('home.shop')}}">Tất cả</a></li>
                                 @foreach($categories as $cat)
                                 <li><a href="{{route('home.category',['category'=>$cat->id, 'slug'=>Str::slug($cat->name)])}}">{{$cat->name}}</a></li>
                                 @endforeach
@@ -23,12 +23,12 @@
                     <form method="get" action="" role="form" class="form-inline">
                         <div class="form-group">
                             <select class="customed-select" name="order">
-                                <option value="new">New</option>
-                                <option value="old">Old</option>
-                                <option value="name-asc">A to Z</option>
-                                <option value="name-desc">Z to A</option>
-                                <option value="price-asc" name="low">Low to High Price</option>
-                                <option value="price-desc">High to Low Price</option>
+                                <option value="new">Mới</option>
+                                <option value="old">Cũ</option>
+                                <option value="name-asc">Tên A to Z</option>
+                                <option value="name-desc">Tên Z to A</option>
+                                <option value="price-asc" name="low">Giá thấp đến cao</option>
+                                <option value="price-desc">Giá cao đến thấp</option>
                             </select>
                         </div>
                         <button type="submit">Lọc</button>

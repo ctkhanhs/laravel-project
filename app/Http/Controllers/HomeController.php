@@ -10,6 +10,8 @@ use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Banner;
+use App\Http\Requests\Customer\CustomerLoginRequest as ReqLogin;
+use App\Http\Requests\Customer\CustomerRegisterRequest as ReqRegister;
 
 class HomeController extends Controller
 {
@@ -85,16 +87,8 @@ class HomeController extends Controller
         return view('customer.register');
     }
 
-    public function post_register(Request $req)
+    public function post_register(ReqRegister $req)
     {
-        $req->validate([
-            'password' => 'required',
-            'comfirm_password' => 'required|same:password'
-        ], [
-            'password.required' => 'Mật khẩu không để trống',
-            'comfirm_password.required' => 'Nhập lại mật khẩu ở trên',
-            'comfirm_password.same' => 'Nhập lại mật khẩu không chính xác'
-        ]);
         $data = $req->only('name', 'email', 'phone', 'address');
         $data['password'] = bcrypt($req->password);
         if (Customer::create($data)) {
@@ -108,13 +102,13 @@ class HomeController extends Controller
         return view('customer.login');
     }
 
-    public function post_login(Request $req){
+    public function post_login(ReqLogin $req){
         $data = $req->only('email','password');
         $check = auth()->guard('customer')->attempt($data);
         if($check){
             return redirect()->route('home');
         }
-        return redirect()->back()->with('no','đăng nhập không thành công');
+        return redirect()->back()->with('no','Email hoặc mật khẩu không chính xác');
 
 
     }

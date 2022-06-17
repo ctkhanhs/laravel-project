@@ -4,11 +4,10 @@
 <div id="content">
     <div class="breadcrumb">
         <div class="container">
-            <h2>Order History</h2>
+            <h2>Lịch sử đơn hàng</h2>
             <ul>
-                <li>Home</li>
-                <li>Shop</li>
-                <li class="active">Order History</li>
+                <li>Trang chủ</li>
+                <li class="active">Lịch sử đơn hàng</li>
             </ul>
         </div>
     </div>
@@ -25,11 +24,11 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Họ và Tên</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Order Date</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Ngày đặt</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +40,7 @@
                                 <td>{{$od->phone}}</td>
                                 <td>{{$od->address}}</td>
                                 <td>{{$od->created_at}}</td>
-                                <td><a class="btn -dark" href="{{route('home.order_details',$od->id)}}">Detail</a></td>
+                                <td><a class="btn -dark" href="{{route('home.order_details',$od->id)}}">Chi tiết</a></td>
                             </tr>
                             @endforeach
 

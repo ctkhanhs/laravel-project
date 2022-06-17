@@ -5,11 +5,10 @@
 
 <div class="breadcrumb">
     <div class="container">
-        <h2>Cart</h2>
+        <h2>Giỏ hàng</h2>
         <ul>
-            <li>Home</li>
-            <li>Shop</li>
-            <li class="active">Cart</li>
+            <li>Trang chủ</li>
+            <li class="active">Giỏ hàng</li>
         </ul>
     </div>
 </div>
@@ -29,10 +28,10 @@
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -68,17 +67,17 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="cart__table__footer"><a href="{{route('home')}}"><i class="fal fa-long-arrow-left"></i>Continue Shopping</a><a href="{{route('cart.clear')}}"><i class="fal fa-trash"></i>Clear Shopping Cart</a></div>
+                    <div class="cart__table__footer"><a href="{{route('home')}}"><i class="fal fa-long-arrow-left"></i>Tiếp tục mua hàng</a><a href="{{route('cart.clear')}}"><i class="fal fa-trash"></i>Xóa tất cả</a></div>
                 </div>
                 <div class="cart__total">
                     <div class="row">
                         <div class="col-12 col-md-8">
                             <div class="cart__total__discount">
-                                <p>Enter coupon code. It will be applied at checkout.</p>
+                                <p>Nhập mã giảm giá</p>
                                 <div class="input-validator">
                                     <form action="#">
                                         <input type="text" name="discountCode" placeholder="Your code here" />
-                                        <button class="btn -dark">Apply
+                                        <button class="btn -dark">Dùng
                                         </button>
                                     </form>
                                 </div>
@@ -86,15 +85,15 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="cart__total__content">
-                                <h3>Cart</h3>
+                                <h3>Giỏ hàng</h3>
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th>Total</th>
-                                            <td class="final-price">{{$cart->totalAmount}}</td>
+                                            <th>Tổng tiền</th>
+                                            <td class="final-price">{{$cart->totalAmount}} đ</td>
                                         </tr>
                                     </tbody>
-                                </table><a class="btn -dark" href="{{route('cart.checkout')}}">Proceed to checkout</a>
+                                </table><a class="btn -dark" href="{{route('cart.checkout')}}">Thanh toán</a>
                             </div>
                         </div>
                     </div>

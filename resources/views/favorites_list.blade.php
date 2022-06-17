@@ -4,11 +4,10 @@
 <div id="content">
     <div class="breadcrumb">
         <div class="container">
-            <h2>Wishlist</h2>
+            <h2>Yêu thích</h2>
             <ul>
-                <li>Home</li>
-                <li>Shop</li>
-                <li class="active">Wishlist</li>
+                <li>Trang chủ</li>
+                <li class="active">Yêu thích</li>
             </ul>
         </div>
     </div>
@@ -25,8 +24,8 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Unit Price</th>
+                                <th>Sản phẩm</th>
+                                <th>Giá</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -42,7 +41,7 @@
                                     </div>
                                 </td>
                                 <td>{{$pro->price}}</td>
-                                <td><a class="btn -dark" href="{{route('cart.add',$pro->id)}}">Add to cart</a><a class="remove-btn" href="{{route('home.unfavorite',$pro->id)}}"><i class="fal fa-times"></i></a>
+                                <td><a class="btn -dark" href="{{route('cart.add',$pro->id)}}">Thêm vào giỏ hàng</a><a class="remove-btn" href="{{route('home.unfavorite',$pro->id)}}"><i class="fal fa-times"></i></a>
                                 </td>
                             </tr>
                             @endforeach

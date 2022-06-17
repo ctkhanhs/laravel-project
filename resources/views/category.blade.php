@@ -3,9 +3,9 @@
 <div id="content">
   <div class="breadcrumb">
     <div class="container">
-      <h2>Shop</h2>
+      <h2>Sản phẩm</h2>
       <ul>
-        <li>Shop</li>
+        <li>Sản phẩm</li>
         <li class="active">{{$category->name}}</li>
       </ul>
     </div>

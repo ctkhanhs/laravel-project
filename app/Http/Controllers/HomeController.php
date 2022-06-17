@@ -48,7 +48,7 @@ class HomeController extends Controller
     }
     public function product(Product $product)
     {
-        $same_category = Product::where('category_id', '=', $product->category_id)->limit(6)->get();
+        $same_category = Product::where('category_id', '=', $product->category_id)->where('id', '!=', $product->id)->limit(6)->get();
         return view('product', compact('product','same_category'));
     }
 

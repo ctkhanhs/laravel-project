@@ -10,6 +10,7 @@
             </ul>
         </div>
     </div>
+    @if($cart->totalQuantity > 0)
     <div class="shop">
         <div class="container">
             <div class="checkout">
@@ -115,5 +116,8 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="cart__table__footer container"><a href="{{route('home')}}"><i class="fal fa-long-arrow-left"></i>Tiếp tục mua hàng</a></div>
+    @endif
 
     @stop()

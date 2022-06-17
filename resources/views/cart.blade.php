@@ -69,6 +69,7 @@
                     </div>
                     <div class="cart__table__footer"><a href="{{route('home')}}"><i class="fal fa-long-arrow-left"></i>Tiếp tục mua hàng</a><a href="{{route('cart.clear')}}"><i class="fal fa-trash"></i>Xóa tất cả</a></div>
                 </div>
+                @if($cart->totalQuantity > 0)
                 <div class="cart__total">
                     <div class="row">
                         <div class="col-12 col-md-8">
@@ -98,6 +99,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

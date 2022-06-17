@@ -70,7 +70,6 @@
                     <li><a class="dropdown-item" href="{{route('home.category',['category'=>$cat->id, 'slug'=>Str::slug($cat->name)])}}">{{$cat->name}}</a></li>
                     @endforeach
                   </ul>
-                  <ul class="dropdown-menu__col -banner"><a href="shop-fullwidth-4col.html"><img src="{{url('public/images')}}/dropdown-menu-banner.png" alt="New product banner" /></a></ul>
                 </ul>
               </li>
               <li><a href="">Blog</a></li>

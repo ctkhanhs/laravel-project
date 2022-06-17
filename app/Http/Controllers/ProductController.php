@@ -14,10 +14,10 @@ class ProductController extends Controller
 {
     public function index(Request $req)
     {
-        $products = Product::paginate(2);
+        $products = Product::paginate(4);
         if ($req->key) {
             $key = $req->key;
-            $products = Product::where('name', 'like', '%' . $key . '%')->paginate(2);
+            $products = Product::where('name', 'like', '%' . $key . '%')->paginate(4);
         }
         return view('admin.product.index', compact('products'));
     }

@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function index(Request $req)
     {
-        $cats = Category::search()->paginate(2);
+        $cats = Category::search()->paginate(4);
         return view('admin.category.index', compact('cats'));
     }
     public function create()

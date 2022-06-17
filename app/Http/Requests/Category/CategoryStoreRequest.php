@@ -24,7 +24,7 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required,unique:categories'
+            'name' =>'required|unique:categories'
         ];
     }
     public function messages()

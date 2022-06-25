@@ -1,20 +1,6 @@
 @extends('master.admin')
 @section('title','Danh sách khách hàng')
 @section('main')
-
-<form action="" method="GET" class="form-inline" role="form">
-
-    <div class="form-group">
-        <label class="sr-only" for="">label</label>
-        <input type="text" class="form-control" name="key" placeholder="Input field">
-    </div>
-
-
-
-    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-</form>
-
-
 <table class="table table-hover">
     <thead>
         <tr>

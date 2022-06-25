@@ -88,7 +88,7 @@
                                         </ul>
                                         <div id="allTabsContainer">
                                             <div class="tab-content__item -description" data-tab-index="0">
-                                                <p>{{$product->description}}</p>
+                                                <p>{!!$product->description!!}</p>
                                             </div>
                                             <div class="tab-content__item -ship" data-tab-index="1" style="display:none;">
                                                 <h5><span>Vận chuyển</span>Hà Nội</h5>

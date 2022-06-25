@@ -2,7 +2,7 @@
 return [
     [
         'route' =>  'admin.index',
-        'title' => 'Dashboard',
+        'title' => 'Trang chủ',
         'icon' => 'fa-home'
     ],
     [
